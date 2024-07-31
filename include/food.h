@@ -5,7 +5,7 @@
 class Food {
 
 public:
-  Food(float x, float y);
+  Food();
 
   void draw();
 

@@ -1,20 +1,20 @@
 #include "food.h"
 #include "constants.h"
 
-Food::Food(float x, float y) 
+Food::Food() 
 {
   position = generateRandomPos();
 }
 
 void Food::draw()
 {
-  DrawRectangle(
+  Rectangle segment = Rectangle{
     position.x * constants::cellSize, 
-    position.y * constants::cellSize, 
+    position.x * constants::cellSize, 
     constants::cellSize, 
-    constants::cellSize, 
-    constants::darkGreen
-  );
+    constants::cellSize
+  };
+  DrawRectangleRounded(segment, 1, 6, constants::darkGreen);
 }
 
 Vector2 Food::generateRandomPos()

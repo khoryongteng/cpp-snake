@@ -24,6 +24,7 @@ target_sources(${PROJECT_NAME}
   PRIVATE
     src/main.cpp
     src/food.cpp
+    src/snake.cpp
 )
 
 # Specify include directories
@@ -43,3 +44,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
   CXX_STANDARD 17
   CXX_STANDARD_REQUIRED YES
 )
+
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
