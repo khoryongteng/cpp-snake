@@ -5,11 +5,13 @@
 class Food {
 
 public:
-  Food(int x, int y);
+  Food(float x, float y);
 
   void draw();
 
 private:
   Vector2 position;
   Texture2D texture;
+  
+  Vector2 generateRandomPos();
 };

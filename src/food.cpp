@@ -1,7 +1,10 @@
 #include "food.h"
 #include "constants.h"
 
-Food::Food(int x, int y) : position {static_cast<float>(x), static_cast<float>(y)} {}
+Food::Food(float x, float y) 
+{
+  position = generateRandomPos();
+}
 
 void Food::draw()
 {
@@ -12,4 +15,11 @@ void Food::draw()
     constants::cellSize, 
     constants::darkGreen
   );
+}
+
+Vector2 Food::generateRandomPos()
+{
+  float x = GetRandomValue(0, constants::cellCount - 1);
+  float y = GetRandomValue(0, constants::cellCount - 1);
+  return Vector2{x, y};
 }
