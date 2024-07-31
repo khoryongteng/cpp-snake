@@ -22,8 +22,9 @@ add_executable(${PROJECT_NAME})
 # Add source files to the target
 target_sources(${PROJECT_NAME}
   PRIVATE
-    src/main.cpp
     src/food.cpp
+    src/game_manager.cpp
+    src/main.cpp
     src/snake.cpp
 )
 
