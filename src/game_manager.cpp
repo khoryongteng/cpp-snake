@@ -1,10 +1,6 @@
 #include "game_manager.h"
 #include "constants.h"
 
-GameManager::GameManager() : 
-  food{}, snake{} 
-{}
-
 void GameManager::update()
 {
   double currentTime = GetTime();
