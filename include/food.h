@@ -8,6 +8,8 @@ public:
   Food();
 
   void draw();
+  Vector2 getPosition();
+  void switchPos();
 
 private:
   Vector2 position;

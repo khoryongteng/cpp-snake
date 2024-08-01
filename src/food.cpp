@@ -10,11 +10,21 @@ void Food::draw()
 {
   Rectangle segment = Rectangle{
     position.x * constants::cellSize, 
-    position.x * constants::cellSize, 
+    position.y * constants::cellSize, 
     constants::cellSize, 
     constants::cellSize
   };
   DrawRectangleRounded(segment, 1, 6, constants::darkGreen);
+}
+
+Vector2 Food::getPosition()
+{
+  return position;
+}
+
+void Food::switchPos()
+{
+  position = generateRandomPos();
 }
 
 Vector2 Food::generateRandomPos()

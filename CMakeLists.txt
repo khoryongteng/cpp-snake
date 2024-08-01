@@ -16,6 +16,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
+get_target_property(raylib_include_dirs raylib INTERFACE_INCLUDE_DIRECTORIES)
+set_target_properties(raylib PROPERTIES INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${raylib_include_dirs}")
+
 # Add executable target
 add_executable(${PROJECT_NAME})
 

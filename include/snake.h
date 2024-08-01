@@ -19,12 +19,10 @@ public:
   void draw();
   void update();
   void setDirection(Direction newDirection);
+  Vector2 getPosition();
 
 private:
   std::deque<Vector2> body;
   Vector2 direction {1, 0};
-
-  Vector2 directionToVector2(Direction newDirection) const;
-
   static const std::unordered_map<Direction, Vector2> directionMap;
 };

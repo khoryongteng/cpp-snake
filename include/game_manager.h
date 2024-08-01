@@ -12,4 +12,6 @@ private:
   double lastUpdateTime {0};
   Food food;
   Snake snake;
+
+  void checkCollisionWithFood();
 };

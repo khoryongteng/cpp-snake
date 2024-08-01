@@ -1,3 +1,5 @@
+#include "raylib.h"
+#include "raymath.h"
 #include "game_manager.h"
 #include "constants.h"
 
@@ -8,6 +10,7 @@ void GameManager::update()
   {
     lastUpdateTime = currentTime;
     snake.update();
+    checkCollisionWithFood();
   }
 }
 
@@ -55,4 +58,11 @@ void GameManager::render()
   food.draw();
   snake.draw();
   EndDrawing();
+}
+
+void GameManager::checkCollisionWithFood()
+{
+  if (Vector2Equals(snake.getPosition(), food.getPosition())) {
+    food.switchPos();
+  }
 }

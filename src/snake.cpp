@@ -32,6 +32,11 @@ void Snake::setDirection(Direction newDirection)
   direction = newDirectionVector;
 }
 
+Vector2 Snake::getPosition()
+{
+  return body.at(0);
+}
+
 const std::unordered_map<Snake::Direction, Vector2> Snake::directionMap = {
   {Direction::Up, Vector2{0, -1}},
   {Direction::Down, Vector2{0, 1}},
