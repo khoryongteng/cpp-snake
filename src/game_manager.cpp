@@ -64,5 +64,6 @@ void GameManager::checkCollisionWithFood()
 {
   if (Vector2Equals(snake.getPosition(), food.getPosition())) {
     food.switchPos();
+    snake.grow();
   }
 }

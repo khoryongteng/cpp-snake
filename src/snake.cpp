@@ -37,6 +37,11 @@ Vector2 Snake::getPosition()
   return body.at(0);
 }
 
+void Snake::grow()
+{
+  body.push_back(body.back());
+}
+
 const std::unordered_map<Snake::Direction, Vector2> Snake::directionMap = {
   {Direction::Up, Vector2{0, -1}},
   {Direction::Down, Vector2{0, 1}},

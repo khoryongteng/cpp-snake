@@ -20,6 +20,7 @@ public:
   void update();
   void setDirection(Direction newDirection);
   Vector2 getPosition();
+  void grow();
 
 private:
   std::deque<Vector2> body;
