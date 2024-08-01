@@ -23,3 +23,20 @@ void Snake::update()
   auto newSegment = Vector2{body[0].x + direction.x, body[0].y + direction.y};
   body.push_front(newSegment);
 }
+
+void Snake::setDirection(Direction newDirection)
+{
+  Vector2 newDirectionVector = directionMap.at(newDirection);
+  if (direction.x == -newDirectionVector.x && direction.y == -newDirectionVector.y) 
+  {
+    return;
+  }
+  direction = newDirectionVector;
+}
+
+const std::unordered_map<Snake::Direction, Vector2> Snake::directionMap = {
+  {Direction::Up, Vector2{0, -1}},
+  {Direction::Down, Vector2{0, 1}},
+  {Direction::Left, Vector2{-1, 0}},
+  {Direction::Right, Vector2{1, 0}},
+};

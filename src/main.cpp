@@ -12,6 +12,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         gameManager.update();
+        gameManager.detectControls();
         gameManager.render();
     }
 

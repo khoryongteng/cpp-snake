@@ -5,6 +5,7 @@ class GameManager {
 public:
   GameManager();
   void update();
+  void detectControls();
   void render();
 private:
   const double interval {0.2};
