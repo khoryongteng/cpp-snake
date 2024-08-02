@@ -3,6 +3,12 @@
 #include "game_manager.h"
 #include "constants.h"
 
+GameManager::GameManager()
+{
+  snake = Snake{};
+  food = Food{snake.getBody()};
+}
+
 void GameManager::update()
 {
   double currentTime = GetTime();
@@ -62,8 +68,8 @@ void GameManager::render()
 
 void GameManager::checkCollisionWithFood()
 {
-  if (Vector2Equals(snake.getPosition(), food.getPosition())) {
-    food.switchPos();
+  if (Vector2Equals(snake.getHead(), food.getPosition())) {
+    food.switchPosition(snake.getBody());
     snake.grow();
   }
 }

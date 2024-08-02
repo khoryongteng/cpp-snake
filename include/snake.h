@@ -19,7 +19,8 @@ public:
   void draw();
   void update();
   void setDirection(Direction newDirection);
-  Vector2 getPosition();
+  Vector2 getHead();
+  std::deque<Vector2>& getBody();
   void grow();
 
 private:

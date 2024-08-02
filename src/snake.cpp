@@ -32,9 +32,14 @@ void Snake::setDirection(Direction newDirection)
   direction = newDirectionVector;
 }
 
-Vector2 Snake::getPosition()
+Vector2 Snake::getHead()
 {
   return body.at(0);
+}
+
+std::deque<Vector2>& Snake::getBody()
+{
+  return body;
 }
 
 void Snake::grow()

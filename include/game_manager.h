@@ -3,7 +3,7 @@
 
 class GameManager {
 public:
-  GameManager() : food{}, snake{} {};
+  GameManager();
   void update();
   void detectControls();
   void render();

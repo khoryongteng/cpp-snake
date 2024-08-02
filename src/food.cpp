@@ -1,9 +1,11 @@
 #include "food.h"
 #include "constants.h"
 
-Food::Food() 
+#include <raymath.h>
+
+Food::Food(const std::deque<Vector2>& invalidVectors)
 {
-  position = generateRandomPos();
+  switchPosition(invalidVectors);
 }
 
 void Food::draw()
@@ -22,14 +24,31 @@ Vector2 Food::getPosition()
   return position;
 }
 
-void Food::switchPos()
+void Food::switchPosition(const std::deque<Vector2>& invalidVectors)
 {
-  position = generateRandomPos();
+  Vector2 newPosition = generateRandomPosition();
+  while (isColliding(newPosition, invalidVectors))
+  {
+    newPosition = generateRandomPosition();
+  }
+  position = newPosition;
 }
 
-Vector2 Food::generateRandomPos()
+Vector2 Food::generateRandomPosition()
 {
   float x = GetRandomValue(0, constants::cellCount - 1);
   float y = GetRandomValue(0, constants::cellCount - 1);
   return Vector2{x, y};
+}
+
+bool Food::isColliding(const Vector2& pos, const std::deque<Vector2>& invalidVectors)
+{
+  for (const auto& invalidVector : invalidVectors) 
+  {
+    if (Vector2Equals(pos, invalidVector))
+    {
+      return true;
+    }
+  }
+  return false;
 }
