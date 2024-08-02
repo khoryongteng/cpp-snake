@@ -8,10 +8,15 @@ public:
   void detectControls();
   void render();
 private:
-  const double interval {0.2};
-  double lastUpdateTime {0};
   Food food;
   Snake snake;
-
+  const double interval {0.2};
+  double lastUpdateTime {0};
+  bool running {false};
+  
   void checkCollisionWithFood();
+  void checkCollisionWithEdges();
+  void checkCollisionWithTail();
+  void gameOver();
+  void reset();
 };

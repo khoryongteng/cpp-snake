@@ -2,21 +2,26 @@
 #include "raymath.h"
 #include "game_manager.h"
 #include "constants.h"
+#include <iostream>
 
 GameManager::GameManager()
 {
-  snake = Snake{};
-  food = Food{snake.getBody()};
+  reset();
 }
 
 void GameManager::update()
 {
-  double currentTime = GetTime();
-  if(currentTime - lastUpdateTime >= interval)
+  if (running)
   {
-    lastUpdateTime = currentTime;
-    snake.update();
-    checkCollisionWithFood();
+    double currentTime = GetTime();
+    if(currentTime - lastUpdateTime >= interval)
+    {
+      lastUpdateTime = currentTime;
+      snake.update();
+      checkCollisionWithFood();
+      checkCollisionWithEdges();
+      checkCollisionWithTail();
+    }
   }
 }
 
@@ -36,6 +41,11 @@ void GameManager::detectControls()
       }
       pressedKey = key;
     }
+  }
+
+  if (!running && pressedKey != KEY_NULL)
+  {
+    running = true;
   }
 
   switch (pressedKey)
@@ -72,4 +82,41 @@ void GameManager::checkCollisionWithFood()
     food.switchPosition(snake.getBody());
     snake.grow();
   }
+}
+
+void GameManager::checkCollisionWithEdges()
+{
+  if(snake.getHead().x >= constants::cellCount || 
+     snake.getHead().x < 0 || 
+     snake.getHead().y >= constants::cellCount || 
+     snake.getHead().y < 0)
+  {
+    gameOver();
+  }
+}
+
+void GameManager::checkCollisionWithTail()
+{
+  const std::deque<Vector2> body = snake.getBody();
+  for (size_t i = 1; i < body.size(); ++i)
+  {
+    if (Vector2Equals(body.at(0), body.at(i)))
+    {
+      gameOver();
+      return; // Exit early after game over
+    }
+  }
+}
+
+void GameManager::gameOver()
+{
+  std::cout << "Game Over!" << std::endl;
+  running = false;
+  reset();
+}
+
+void GameManager::reset()
+{
+  snake = Snake{};
+  food = Food{snake.getBody()};
 }
