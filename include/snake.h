@@ -27,4 +27,5 @@ private:
   std::deque<Vector2> body;
   Vector2 direction {1, 0};
   static const std::unordered_map<Direction, Vector2> directionMap;
+  bool addSegment = false;
 };

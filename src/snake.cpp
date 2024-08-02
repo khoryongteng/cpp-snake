@@ -1,5 +1,6 @@
 #include "snake.h"
 #include "constants.h"
+#include <raymath.h>
 
 void Snake::draw()
 {
@@ -17,9 +18,15 @@ void Snake::draw()
 
 void Snake::update()
 {
-  body.pop_back();
-  auto newSegment = Vector2{body[0].x + direction.x, body[0].y + direction.y};
-  body.push_front(newSegment);
+  body.push_front(Vector2Add(body.at(0), direction));
+  if (addSegment)
+  {
+    addSegment = false;
+  }
+  else
+  {
+    body.pop_back();
+  }
 }
 
 void Snake::setDirection(Direction newDirection)
@@ -44,7 +51,7 @@ std::deque<Vector2>& Snake::getBody()
 
 void Snake::grow()
 {
-  body.push_back(body.back());
+  addSegment = true;
 }
 
 const std::unordered_map<Snake::Direction, Vector2> Snake::directionMap = {
