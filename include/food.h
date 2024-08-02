@@ -18,5 +18,5 @@ private:
   Texture2D texture;
 
   Vector2 generateRandomPosition();
-  bool isColliding(const Vector2& pos, const std::deque<Vector2>& invalidVectors);
+  bool isOverlapping(const Vector2& pos, const std::deque<Vector2>& invalidVectors);
 };

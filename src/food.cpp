@@ -27,7 +27,7 @@ Vector2 Food::getPosition()
 void Food::switchPosition(const std::deque<Vector2>& invalidVectors)
 {
   Vector2 newPosition = generateRandomPosition();
-  while (isColliding(newPosition, invalidVectors))
+  while (isOverlapping(newPosition, invalidVectors))
   {
     newPosition = generateRandomPosition();
   }
@@ -41,7 +41,7 @@ Vector2 Food::generateRandomPosition()
   return Vector2{x, y};
 }
 
-bool Food::isColliding(const Vector2& pos, const std::deque<Vector2>& invalidVectors)
+bool Food::isOverlapping(const Vector2& pos, const std::deque<Vector2>& invalidVectors)
 {
   for (const auto& invalidVector : invalidVectors) 
   {
